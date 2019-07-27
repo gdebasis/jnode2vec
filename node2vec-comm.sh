@@ -42,6 +42,9 @@ EOF1
 
 fi
 
+#make sure that we're working on the latest source
+mvn compile
+
 #Put trace=3 if you want verbose o/p 
 
 mvn exec:java@node2vec -Dexec.args="-props node2vec-comm.properties -trace 2" 
