@@ -920,7 +920,7 @@ public class Node2Vec {
     }
 
     public static void main(String[] args) throws IOException {
-        Node2Vec cmd = new Node2Vec("init.properties");
+        Node2Vec cmd = new Node2Vec();
         cmd.run(args.length, args);
     }    
 }
