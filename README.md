@@ -3,6 +3,12 @@
 This Java implementation of Node2vec allows provision to selectively filter nodes appearing in the context of a node (as a part of random walk) based on additional constraints.
 The additional constraint for now is a partition of nodes into communities as per any standard community detecting algorithm.
 
+The program uses the open-sourced NMI evaluation package [GenConvNMI] (https://github.com/eXascaleInfolab/GenConvNMI). After cloning the GenConvNMI repository execute
+```
+make release
+```
+to build the necessary executables. This implementation contains a folder `clusteval` which has a snapshot of the GenConvNMI build for MAC. If you are using a different OS, you would need to freshly build the executables for the GenConvNMI package.  
+
 A sample graph (network) is provided. I also provided a sample partition of the network which is taken as input by the node embedding script.
 Simply execute the script *node2vec-comm.sh* with the following arguments
 
