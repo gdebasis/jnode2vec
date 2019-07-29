@@ -8,15 +8,17 @@ Simply execute the script *node2vec-comm.sh* with the following arguments
 
 1. The graph file, which is an edge list file, where each line is of the format `<src-node> \t <target-node> \t <weight>` (if your graph is unweighted , specify 1 as weight).
 2. The output file, where the program writes out the vector (in text format) for each node. The first token is the node name followed by the components of the vector for the node.
-3. An optional partition file where each line is a space separated list of node names (matching the ones in the graph file corresponding to option 1).
+3. The ground-truth community for evaluation
+4. The number of desired clusters for K-means clustering.
+5. An optional partition file where each line is a space separated list of node names (matching the ones in the graph file corresponding to option 1).
 
 A sample invokation (with no partition file specified) is
 ```
-sh node2vec-comm.sh data/LFR4000/network.txt data/LFR4000/vec.txt 
+./node2vec-comm.sh data/LFR4000/network.txt ./data/LFR4000/vec_p.txt data/LFR4000/network_grdth_cmty_list.txt 50
 ```
 
 Another invokation with the partition file is  
 
 ```
-sh node2vec-comm.sh data/LFR4000/network.txt data/LFR4000/vec_p.txt data/LFR4000/modularity_based_cluster_output_LFR.txt
+./node2vec-comm.sh data/LFR4000/network.txt ./data/LFR4000/vec_p.txt data/LFR4000/network_grdth_cmty_list.txt 50 data/LFR4000/modularity_based_cluster_output_LFR.txt
 ```
