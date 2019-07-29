@@ -7,6 +7,9 @@ package com.ibm.node2vec;
 import javax.annotation.Nullable;
 import java.io.*;
 import java.util.*;
+import java.util.Map.Entry;
+import org.apache.commons.math3.ml.clustering.CentroidCluster;
+import org.apache.commons.math3.ml.clustering.KMeansPlusPlusClusterer;
 
 /**
  * A collection of WordVec instances for each unique term in
@@ -20,7 +23,11 @@ public class WordVecs {
     String nnFile;
     HashMap<String, WordVec> wordvecmap;
     HashMap<String, List<WordVec>> nearestWordVecsMap; // Store the pre-computed NNs
-    
+    KMeansPlusPlusClusterer<WordVec> clusterer;
+
+    public WordVecs() {
+    }
+
     /**
      * Initializes the container class from a specified properties file
      * @param propFile
@@ -80,6 +87,18 @@ public class WordVecs {
         initNN();
     }
     
+    public List<CentroidCluster<WordVec>> clusterWords(int numClusters) throws Exception {
+        
+        List<WordVec> wordList = new ArrayList<>(wordvecmap.size());
+        for (Entry<String, WordVec> e : wordvecmap.entrySet()) {
+            wordList.add(e.getValue());
+        }
+        
+        clusterer = new KMeansPlusPlusClusterer<>(numClusters);
+        List<CentroidCluster<WordVec>> clusters = clusterer.cluster(wordList); 
+        return clusters;
+    }
+    
     boolean hasDigit(String word) {
         int len = word.length();
         for (int i=0; i < len; i++) {
@@ -89,14 +108,14 @@ public class WordVecs {
         return false;
     }
     
-    void loadFromTextFile(InputStream wordvecFile) {
+    public void loadFromTextFile(InputStream wordvecFile) {
         wordvecmap = new HashMap();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(wordvecFile))) {
             String line;
             
             while ((line = br.readLine()) != null) {
-                if (hasDigit(line.split("\\s+")[0]))
-                    continue;
+                //if (hasDigit(line.split("\\s+")[0]))
+                //    continue;
                 WordVec wv = new WordVec(line);
                 wordvecmap.put(wv.word, wv);
             }

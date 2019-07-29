@@ -58,6 +58,15 @@
                     <mainClass>com.ibm.node2vec.Node2Vec</mainClass>
                 </configuration>
             </execution>
+            <execution>
+                <id>kmeans</id>
+                <goals>
+                    <goal>java</goal>
+                </goals>
+                <configuration>
+                    <mainClass>com.ibm.node2vec.Node2VecClusterer</mainClass>
+                </configuration>
+            </execution>
             </executions>    
         </plugin>
         </plugins>

@@ -10,7 +10,7 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Properties;
-import modularity.ModularityLoader;
+import com.ibm.modularity.ModularityLoader;
 
 /**
  * A Java port of node2vec.c
@@ -147,6 +147,7 @@ public class Node2Vec {
         min_count = Integer.parseInt(props.getProperty("node2vec.mincount", "1"));
         p1 = Float.parseFloat(props.getProperty("node2vec.p1", "0.5"));
         q1 = Float.parseFloat(props.getProperty("node2vec.q1", "0.5"));
+        debug_mode = Integer.parseInt(props.getProperty("trace", "3"));
     }
     
     final void loadFiles() {
@@ -656,7 +657,10 @@ public class Node2Vec {
         prev_node = src_node;
 
         if (debug_mode > 2)        
-            System.out.println("Random walk from " + src_node.word);
+            System.out.println("Random walk from " + src_node.word + " (" + src_node_index + ")");
+        
+        if (src_node_index == 16)
+            src_node_index = src_node_index;
         
         while (j < window) {
             // normalize the weights so that they sum to 1;
@@ -920,6 +924,14 @@ public class Node2Vec {
     }
 
     public static void main(String[] args) throws IOException {
+        if (args.length < 1) {
+            System.err.println("usage: Node2Vec <properties file>");
+            System.err.println("Using default properties file...");
+            
+            args = new String[1];
+            args[0] = "-props init.properties";
+        }
+        
         Node2Vec cmd = new Node2Vec();
         cmd.run(args.length, args);
     }    
