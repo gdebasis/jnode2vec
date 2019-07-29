@@ -52,7 +52,7 @@ fi
 
 mvn compile
 
-mvn exec:java@node2vec -Dexec.args="-props node2vec-comm.properties -trace 3" 
+mvn exec:java@node2vec -Dexec.args="-props node2vec-comm.properties -trace 2" 
 
 mvn exec:java@kmeans -Dexec.args="node2vec-comm.properties" 
 
