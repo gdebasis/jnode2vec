@@ -16,12 +16,12 @@ if [ $# -lt 5 ]
 then
 
 cat > node2vec-comm.properties << EOF1
-inode2vec.layer1_size=128
+node2vec.layer1_size=128
 node2vec.window=20
-node2vec.ns=20
+node2vec.ns=50
 node2vec.niters=10
-node2vec.p1=0.5
-node2vec.q1=0.5
+node2vec.p1=0.9
+node2vec.q1=0.1
 graphfile=$GRAPHFILE
 outfile=$OUTFILE
 node2vec.numclusters=$NUMCLUSTERS
@@ -34,7 +34,7 @@ else
 cat > node2vec-comm.properties << EOF1
 inode2vec.layer1_size=128
 node2vec.window=20
-node2vec.ns=20
+node2vec.ns=50
 node2vec.niters=10
 node2vec.p1=0.5
 node2vec.q1=0.5
@@ -52,7 +52,7 @@ fi
 
 mvn compile
 
-mvn exec:java@node2vec -Dexec.args="-props node2vec-comm.properties -trace 2 -iter 10 -window 50" 
+mvn exec:java@node2vec -Dexec.args="-props node2vec-comm.properties -trace 2 -iter 20 -window 80 -size 64 -directed 0 -p 10  -q 0.5 -min-count 1 -ns 5" 
 
 mvn exec:java@kmeans -Dexec.args="node2vec-comm.properties" 
 

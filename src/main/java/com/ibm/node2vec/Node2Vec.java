@@ -72,7 +72,7 @@ public class Node2Vec {
     public static final int MAX_SENTENCE_LENGTH = 1000;
     public static final int MAX_CODE_LENGTH = 40;
     public static final int MAX_OUT_DEGREE = 5000;
-    public static final int MAX_CONTEXT_PATH_LEN = 100;
+    public static final int MAX_CONTEXT_PATH_LEN = 1000;
     public static final int SEED = 123456;
 
     public static final int vocab_hash_size = 300000;  // Maximum 30 * 0.7 = 21M words in the vocabulary
@@ -911,6 +911,7 @@ public class Node2Vec {
         System.out.println("ns:" + negative);
         System.out.println("iter:" + iter);
         System.out.println("alpha:" + alpha);
+        System.out.println("min-count:" + min_count);
         
         loadFiles();
         
