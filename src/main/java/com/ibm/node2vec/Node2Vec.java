@@ -903,6 +903,15 @@ public class Node2Vec {
         if ((i = ArgPos("-p", argc, argv)) > 0) p1 = Float.parseFloat(argv[i + 1]);
         if ((i = ArgPos("-q", argc, argv)) > 0) q1 = Float.parseFloat(argv[i + 1]);
 
+        System.out.println("Parameters:");
+        System.out.println("p:" + p1);
+        System.out.println("q:" + q1);
+        System.out.println("size:" + layer1_size);
+        System.out.println("window:" + window);
+        System.out.println("ns:" + negative);
+        System.out.println("iter:" + iter);
+        System.out.println("alpha:" + alpha);
+        
         loadFiles();
         
         if (window > MAX_CONTEXT_PATH_LEN) {

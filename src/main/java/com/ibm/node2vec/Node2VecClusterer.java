@@ -63,7 +63,7 @@ public class Node2VecClusterer {
             System.err.println("Using default properties file...");
             
             args = new String[1];
-            args[0] = "init.properties";
+            args[0] = "node2vec-comm.properties";
         }
         
         try {
