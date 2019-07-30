@@ -49,10 +49,10 @@ public class Node2VecClusterer {
         for (CentroidCluster<WordVec> c : clusters) {
             List<WordVec> thisClusterPoints = c.getPoints();
             for (WordVec thisClusterPoint: thisClusterPoints) {
-                bw.write(thisClusterPoint.word + " " + i);
-                bw.newLine();
+                bw.write(thisClusterPoint.word + " ");
             }
             i++;
+            bw.newLine();
         }     
         bw.close(); fw.close();
     }

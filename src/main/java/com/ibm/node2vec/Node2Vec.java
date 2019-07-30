@@ -854,33 +854,31 @@ public class Node2Vec {
     /** Main program as originally used in command line */
     public boolean run(int argc, String[] argv) throws IOException {
         int i;
-        if (argc == 0) {
-            System.out.print("Node2Vec toolkit v 0.1c\n\n");
-            System.out.print("Command Line Options:\n");
-            System.out.print("Parameters for training:\n");
-            System.out.print("\t-train <file>\n");
-            System.out.print("\t\tGraph file (each line a node: <node-id> \t [<node-id>:<weight>]*)\n");
-            System.out.print("\t-pt <file>\n");
-            System.out.print("\t\tPre-trained vectors for nodes (word2vec bin file format)\n");
-            System.out.print("\t-output <file>\n");
-            System.out.print("\t\tUse <file> to save the resulting word vectors / word clusters\n");
-            System.out.print("\t-size <int>\n");
-            System.out.print("\t\tSet size of word vectors; default is 100\n");
-            System.out.print("\t-window <int>\n");
-            System.out.print("\t\tContext (random walk) length.\n");
-            System.out.print("\t-negative <int>\n");
-            System.out.print("\t\tNumber of negative examples; default is 5, common values are 3 - 10 (0 = not used)\n");
-            System.out.print("\t-iter <int>\n");
-            System.out.print("\t\tRun more training iterations (default 5)\n");
-            System.out.print("\t-min-count <int>\n");
-            System.out.print("\t\tNodes with out-degree less than min-count are discarded; default is 5\n");
-            System.out.print("\t-alpha <float>\n");
-            System.out.print("\t\tSet the starting learning rate; default is 0.025 for skip-gram\n");
-            System.out.print("\t-directed <0/1>\n");
-            System.out.print("\t\twhether the graph is directed (if undirected, reverse edges are automatically added when the i/p fmt is edge list>\n");
-            System.out.print("\nExample:\n");
-            System.out.print("./node2vec -pt ptnodes.vec -train graph.txt -output ovec -size 200 -window 5 -sample 1e-4 -negative 5 -iter 3\n\n");
-        }
+       	System.out.print("Node2Vec toolkit v 0.1c\n\n");
+        System.out.print("Command Line Options:\n");
+        System.out.print("Parameters for training:\n");
+        System.out.print("\t-train <file>\n");
+        System.out.print("\t\tGraph file (each line a node: <node-id> \t [<node-id>:<weight>]*)\n");
+        System.out.print("\t-pt <file>\n");
+        System.out.print("\t\tPre-trained vectors for nodes (word2vec bin file format)\n");
+        System.out.print("\t-output <file>\n");
+        System.out.print("\t\tUse <file> to save the resulting word vectors / word clusters\n");
+        System.out.print("\t-size <int>\n");
+        System.out.print("\t\tSet size of word vectors; default is 100\n");
+        System.out.print("\t-window <int>\n");
+        System.out.print("\t\tContext (random walk) length.\n");
+        System.out.print("\t-negative <int>\n");
+        System.out.print("\t\tNumber of negative examples; default is 5, common values are 3 - 10 (0 = not used)\n");
+        System.out.print("\t-iter <int>\n");
+        System.out.print("\t\tRun more training iterations (default 5)\n");
+        System.out.print("\t-min-count <int>\n");
+        System.out.print("\t\tNodes with out-degree less than min-count are discarded; default is 5\n");
+        System.out.print("\t-alpha <float>\n");
+        System.out.print("\t\tSet the starting learning rate; default is 0.025 for skip-gram\n");
+        System.out.print("\t-directed <0/1>\n");
+        System.out.print("\t\twhether the graph is directed (if undirected, reverse edges are automatically added when the i/p fmt is edge list>\n");
+        System.out.print("\nExample:\n");
+        System.out.print("./node2vec -pt ptnodes.vec -train graph.txt -output ovec -size 200 -window 5 -sample 1e-4 -negative 5 -iter 3\n\n");
         
         if ((i = ArgPos("-props", argc, argv)) >= 0) {
             props.load(new FileReader(argv[i + 1]));
