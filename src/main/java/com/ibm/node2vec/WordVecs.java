@@ -91,7 +91,9 @@ public class WordVecs {
         
         List<WordVec> wordList = new ArrayList<>(wordvecmap.size());
         for (Entry<String, WordVec> e : wordvecmap.entrySet()) {
-            wordList.add(e.getValue());
+			WordVec wv = e.getValue();
+			wv.normalize(); // normalize each vec so that cosine-dist and Euclidean correlate	
+            wordList.add(wv);
         }
         
         clusterer = new KMeansPlusPlusClusterer<>(numClusters);
